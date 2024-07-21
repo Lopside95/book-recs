@@ -1,13 +1,19 @@
 import { trpc } from "@/utils/trpc";
+import { getQueryKey } from "@trpc/react-query";
 
 const Books = () => {
-  // const { data: books } = trpc.getBooks.useQuery();
+  // const don = trpc.simpleBooks.useQuery({"author": "Don DeLillo"})
 
-  const { data: books } = trpc.simpleBooks.useQuery();
+  // console.log("books", books);
 
-  console.log("books", books);
+  // const { data: books } = trpc.books.booksByAuthor.useQuery({});
 
-  return <div>Helllo</div>;
+  return (
+    <div>
+      Helllo
+      <div></div>
+    </div>
+  );
 };
 
 export default Books;
