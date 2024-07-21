@@ -13,3 +13,14 @@ model Books {
     author String
     title  String
 }
+
+model Testing {
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    question String
+    answer   String
+}
+
+model Yes {
+    id   String @id @default(auto()) @map("_id") @db.ObjectId
+    what String
+}
