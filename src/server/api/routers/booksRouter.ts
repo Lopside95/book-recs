@@ -33,6 +33,23 @@ const booksRouter = createRouter({
       console.error(error);
     }
   }),
+  booksByGenre: publicProcedure.input(booksSchema).query(async ({ input }) => {
+    const genreBooks = await prisma.books.findMany({
+      where: {
+        genre: input.genre,
+      },
+    });
+
+    return genreBooks;
+  }),
+  getSingle: publicProcedure.input(booksSchema).query(async ({ input }) => {
+    const chosenBook = await prisma.books.findFirst({
+      where: {
+        author: input.author,
+      },
+    });
+    return chosenBook;
+  }),
   //   booksByAuthor: publicProcedure.query(async () => {
   //     const bibli = await prisma.books.findMany({
   //       where: {

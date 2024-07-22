@@ -1,17 +1,19 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
-import Books from "@/components/books";
 import Clouds from "@/components/clouds";
+import BookForm from "@/components/bookForm";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+const Home = () => {
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center gap-5 p-24 bg-gray-500 ${inter.className}`}
     >
-      <Clouds />
-      <Books />
+      <div>Find Books</div>
+      <BookForm />
     </main>
   );
-}
+};
+
+export default Home;
