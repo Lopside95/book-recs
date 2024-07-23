@@ -1,3 +1,4 @@
+import Nav from "@/components/nav";
 import "@/styles/globals.css";
 import { trpc } from "@/utils/trpc";
 import type { AppProps, AppType } from "next/app";
@@ -8,7 +9,8 @@ const MyApp: AppType = ({ Component, pageProps }) => {
 
   return (
     <FormProvider {...form}>
-      <Component {...pageProps} />;
+      <Nav />
+      <Component {...pageProps} />
     </FormProvider>
   );
 };

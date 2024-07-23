@@ -5,13 +5,20 @@ import BookForm from "@/components/bookForm";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export type TextProps = {
+  name: string;
+  type?: string;
+  label: string;
+};
+
 const Home = () => {
   return (
     <main
       className={`flex min-h-screen flex-col items-center gap-5 p-24 bg-gray-500 ${inter.className}`}
     >
       <div>Find Books</div>
-      <BookForm />
+      {/* <Clouds />
+      <BookForm /> */}
     </main>
   );
 };

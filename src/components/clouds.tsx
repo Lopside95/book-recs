@@ -1,5 +1,6 @@
 "use client";
 
+import { BookForm } from "@/pages/find";
 import {
   AnimatePresence,
   motion,
@@ -11,18 +12,18 @@ import { useEffect, useState } from "react";
 
 type Cloud = "sm" | "md" | "lg";
 
-const Clouds = () => {
+const Clouds = ({ isThinking, setIsThinking, times, setTimes }: BookForm) => {
   const [isCloud, setIsCloud] = useState<Cloud>("sm");
 
   const cycle = useAnimationControls();
 
-  const [times, setTimes] = useState<number>(0);
-
   const handleCycle = async () => {
-    if (times < 1) {
+    if (times !== undefined && times < 4) {
       await cycle.start("show");
       await cycle.start("hide");
       setTimes(times + 1);
+    } else if (times === 4) {
+      setIsThinking(false);
     }
 
     // else {
@@ -41,36 +42,14 @@ const Clouds = () => {
       <div className="relative w-3/4 self-center  border-4 h-[600px]">
         <AnimatePresence>
           <motion.div
+            animate={cycle}
             className="absolute w-48 top-80 left-40"
             initial="initial"
-            variants={{
-              initial: {
-                opacity: 0,
-                scale: 0.6,
-              },
-              show: {
-                opacity: 1,
-                scale: 1,
-              },
-              hide: {
-                opacity: 0,
-                scale: 0.6,
-              },
-            }}
-            animate={cycle}
             transition={{
               duration: 0.8,
               ease: "backInOut",
               delay: 0,
             }}
-          >
-            <Cloud />
-          </motion.div>
-        </AnimatePresence>
-        <AnimatePresence>
-          <motion.div
-            className="absolute w-60 top-48 right-96"
-            initial="initial"
             variants={{
               initial: {
                 opacity: 0,
@@ -85,19 +64,47 @@ const Clouds = () => {
                 scale: 0.6,
               },
             }}
+          >
+            <CloudPic />
+          </motion.div>
+        </AnimatePresence>
+        <AnimatePresence>
+          <motion.div
             animate={cycle}
+            className="absolute w-60 top-48 right-96"
+            initial="initial"
             transition={{
               duration: 0.8,
               ease: "backInOut",
               delay: 0.7,
             }}
+            variants={{
+              initial: {
+                opacity: 0,
+                scale: 0.6,
+              },
+              show: {
+                opacity: 1,
+                scale: 1,
+              },
+              hide: {
+                opacity: 0,
+                scale: 0.6,
+              },
+            }}
           >
-            <Cloud />
+            <CloudPic />
           </motion.div>
         </AnimatePresence>
         <motion.div
+          animate={cycle}
           className="absolute w-80 top-10 right-10"
           initial="initial"
+          transition={{
+            duration: 0.8,
+            ease: "backInOut",
+            delay: 1.4,
+          }}
           variants={{
             initial: {
               opacity: 0,
@@ -112,21 +119,15 @@ const Clouds = () => {
               scale: 0.6,
             },
           }}
-          animate={cycle}
-          transition={{
-            duration: 0.8,
-            ease: "backInOut",
-            delay: 1.4,
-          }}
         >
-          <Cloud />
+          <CloudPic />
         </motion.div>
       </div>
       <div className="flex gap-3">
         <button className="border" onClick={() => setIsCloud("sm")}>
           sm
         </button>
-        <button onClick={() => setTimes(7)}>stop</button>
+        <button onClick={() => setTimes(6)}>stop</button>
         <button className="border" onClick={handleCycle}>
           md
         </button>
@@ -144,8 +145,8 @@ const Clouds = () => {
 
 export default Clouds;
 
-export const Cloud = () => {
+export const CloudPic = () => {
   return (
-    <Image src="/cloud.png" alt="cloud" height={500} width={500} className="" />
+    <Image alt="cloud" className="" height={500} src="/cloud.png" width={500} />
   );
 };
