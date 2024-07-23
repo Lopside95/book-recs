@@ -2,29 +2,21 @@ import { trpc } from "@/utils/trpc";
 import { getQueryKey } from "@trpc/react-query";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import React, { SetStateAction, useState } from "react";
-import { Books, booksSchema } from "@/types/books";
+import { Book, booksSchema } from "@/types/books";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Clouds from "@/components/clouds";
 import TextField from "@/components/textField";
 
-export type BookForm = {
-  books?: Books;
-  isThinking?: boolean;
-  setIsThinking: React.Dispatch<SetStateAction<boolean>>;
-  times: number;
-  setTimes: React.Dispatch<SetStateAction<number>>;
-};
-
 const BookFormPage = () => {
   const [chosenAuthor, setChosenAuthor] = useState<string>();
   const [isThinking, setIsThinking] = useState<boolean>(false);
-  const [times, setTimes] = useState<number>(6);
+  // const [times, setTimes] = useState<number>(6);
 
-  const [bookRec, setBookRec] = useState<Books>();
+  const [bookRec, setBookRec] = useState<Book>();
 
-  const form = useForm<Books>({
+  const form = useForm<Book>({
     resolver: zodResolver(booksSchema),
   });
 
@@ -39,7 +31,7 @@ const BookFormPage = () => {
     console.log("bookRec", bookRec);
   };
 
-  const onSubmit: SubmitHandler<Books> = async (data: Books) => {
+  const onSubmit: SubmitHandler<Book> = async (data: Book) => {
     setChosenAuthor(data.author);
     setTimes(0);
     setIsThinking(true);

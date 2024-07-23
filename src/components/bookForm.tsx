@@ -4,21 +4,28 @@ import { Input } from "./ui/input";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 import { Button } from "./ui/button";
 import { useState } from "react";
-import { Books, booksSchema } from "@/types/books";
+import { Book, booksSchema } from "@/types/books";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const BookForm = () => {
   const [chosenAuthor, setChosenAuthor] = useState<string>();
 
-  const [bookRec, setBookRec] = useState<Books>();
+  const [bookRec, setBookRec] = useState<Book>();
 
-  const form = useForm<Books>({
+  const form = useForm<Book>({
     resolver: zodResolver(booksSchema),
+    defaultValues: {
+      author: "Don DeLillo",
+    },
   });
 
-  const { data: books } = trpc.books.booksByAuthor.useQuery({
-    author: chosenAuthor ?? "",
-  });
+  const { data: books } = trpc.books.simpleBooks.useQuery();
+
+  console.log("books", books);
+
+  // const { data: books } = trpc.books.booksByAuthor.useQuery({
+  //   author: chosenAuthor ?? "",
+  // });
 
   const handleFind = async () => {
     if (books && books?.length > 0) {
@@ -27,7 +34,7 @@ const BookForm = () => {
     console.log("bookRec", bookRec);
   };
 
-  const onSubmit: SubmitHandler<Books> = async (data: Books) => {
+  const onSubmit: SubmitHandler<Book> = async (data: Book) => {
     setChosenAuthor(data.author);
     console.log("data", data);
   };

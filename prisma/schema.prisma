@@ -7,10 +7,11 @@ generator client {
     provider = "prisma-client-js"
 }
 
-model Books {
+model Book {
     id     String @id @default(auto()) @map("_id") @db.ObjectId
     genre  String
     author String
+    rating Int
     title  String
 }
 

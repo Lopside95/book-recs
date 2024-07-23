@@ -6,7 +6,7 @@ import { booksSchema } from "@/types/books";
 const booksRouter = createRouter({
   getBooks: publicProcedure.query(async () => {
     try {
-      await prisma.books.findMany();
+      await prisma.book.findMany();
     } catch (error) {
       if (error instanceof TRPCError) {
         throw new TRPCError({
@@ -17,13 +17,13 @@ const booksRouter = createRouter({
     }
   }),
   simpleBooks: publicProcedure.query(async () => {
-    const allBooks = prisma.books.findMany();
+    const allBooks = prisma.book.findMany();
 
     return allBooks;
   }),
   booksByAuthor: publicProcedure.input(booksSchema).query(async ({ input }) => {
     try {
-      const books = await prisma.books.findMany({
+      const books = await prisma.book.findMany({
         where: {
           author: input.author,
         },
@@ -34,7 +34,7 @@ const booksRouter = createRouter({
     }
   }),
   booksByGenre: publicProcedure.input(booksSchema).query(async ({ input }) => {
-    const genreBooks = await prisma.books.findMany({
+    const genreBooks = await prisma.book.findMany({
       where: {
         genre: input.genre,
       },
@@ -43,7 +43,7 @@ const booksRouter = createRouter({
     return genreBooks;
   }),
   getSingle: publicProcedure.input(booksSchema).query(async ({ input }) => {
-    const chosenBook = await prisma.books.findFirst({
+    const chosenBook = await prisma.book.findFirst({
       where: {
         author: input.author,
       },
