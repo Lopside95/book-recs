@@ -20,7 +20,7 @@ const TextField = ({ name, type, label }: TextProps) => {
         <>
           <FormItem className="">
             <FormLabel>{label}</FormLabel>
-            <FormMessage className="text-red-200" />
+            <FormMessage className="text-red-300" />
             <FormControl>
               <Input {...field} />
             </FormControl>

@@ -40,17 +40,12 @@ const Home = () => {
   });
 
   const onSubmit: SubmitHandler<Pick<Book, "author">> = async (data: Book) => {
-    //  await getBook(data)
-    // setBookRec(book);
     setTimes(0);
     setBookRec(book);
     console.log("bookRec", bookRec);
   };
 
-  const handleGet = () => {
-    // setBookRec(book);
-    // console.log("bookRec", bookRec);
-  };
+  const handleGet = () => {};
 
   return (
     <FormProvider {...form}>
@@ -64,7 +59,7 @@ const Home = () => {
         <div className="flex gap-4">
           {times === 4 && !isThinking ? (
             <div>
-              <li> {bookRec?.title}</li>
+              <li>{bookRec?.title}</li>
               <li>{bookRec?.author}</li>
               <li>{bookRec?.genre}</li>
               <li>{bookRec?.rating}</li>

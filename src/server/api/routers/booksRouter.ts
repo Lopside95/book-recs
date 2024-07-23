@@ -16,7 +16,7 @@ const booksRouter = createRouter({
       }
     }
   }),
-  simpleBooks: publicProcedure.query(async () => {
+  getAllBooks: publicProcedure.query(async () => {
     const allBooks = prisma.book.findMany();
 
     return allBooks;
@@ -50,6 +50,11 @@ const booksRouter = createRouter({
     });
     return chosenBook;
   }),
+  // getAuthors: publicProcedure.input(booksSchema).query(async ({input}) => {
+  //   try {
+  //     await prisma.book.findMany
+  //   }
+  // })
   //   booksByAuthor: publicProcedure.query(async () => {
   //     const bibli = await prisma.books.findMany({
   //       where: {

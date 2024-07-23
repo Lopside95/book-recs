@@ -7,6 +7,12 @@ export const booksSchema = z.object({
   rating: z.string().optional(),
 });
 
+export const findBookSchema = z.object({
+  genre: z.string(),
+  author: z.string(),
+  rating: z.string(),
+});
+
 // export const booksSchema = z.object({
 //   genre: z.string(),
 //   author: z.string(),
