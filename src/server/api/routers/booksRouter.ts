@@ -7,7 +7,8 @@ import { z } from "zod";
 const booksRouter = createRouter({
   getBooks: publicProcedure.query(async () => {
     try {
-      await prisma.book.findMany();
+      const books = await prisma.book.findMany();
+      return books;
     } catch (error) {
       if (error instanceof TRPCError) {
         throw new TRPCError({
@@ -17,11 +18,7 @@ const booksRouter = createRouter({
       }
     }
   }),
-  getAllBooks: publicProcedure.query(async () => {
-    const allBooks = prisma.book.findMany();
 
-    return allBooks;
-  }),
   getBook: publicProcedure.input(booksSchema).query(async ({ input }) => {
     const theBook = await prisma.book.findFirst({
       where: {
@@ -31,6 +28,12 @@ const booksRouter = createRouter({
 
     return theBook;
   }),
+
+  // getAllBooks: publicProcedure.query(async () => {
+  //   const allBooks = prisma.book.findMany();
+
+  //   return allBooks;
+  // }),
   // const delId = await prisma.author.findFirst({
   //   where: {
   //     name: "Don DeLillo",

@@ -9,6 +9,7 @@ const Nav = () => {
       <Button onClick={() => router.push("/")}>Main</Button>
       <Button onClick={() => router.push("/all")}>All</Button>
       <Button onClick={() => router.push("/find")}>Find</Button>
+      <Button onClick={() => router.push("/author")}>Author</Button>
       <Button onClick={() => router.push("/byAuthor")}>By author</Button>
     </div>
   );

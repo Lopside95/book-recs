@@ -1,4 +1,3 @@
-import GenSearch from "@/components/genSearch";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { prisma } from "@/server/db";
@@ -8,49 +7,31 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 const AllOptions = () => {
-  const { data: books } = trpc.books.getAllBooks.useQuery();
+  const { data: books } = trpc.books.getBooks.useQuery();
 
   const form = useForm<Book>({
     resolver: zodResolver(booksSchema),
     defaultValues: {},
   });
 
-  const newAuthor = trpc.author.createAuthor.useMutation({
-    onSuccess: () => console.log("author created"),
-    onError: (error) => console.error("Error creating author:", error),
-  });
-
   console.log("books", books);
 
   const utils = trpc.useUtils();
 
-  // const booksDictionary = books?.reduce((acc, book) => {
-  //   const id = book.id
-  // })
-
   const allAuthors = books?.map((book) => book.authorId);
 
-  const { data: authors } = trpc.author.getAuthors.useQuery();
+  // console.log("allAuthors", allAuthors);
+
+  const { data: authors } = trpc.author.getAuthors.useQuery(undefined, {
+    enabled: false,
+  });
+
+  console.log("authors", authors);
 
   // console.log("authors", authors);
 
-  // const handleCreate = () => {
-  //   allAuthors?.forEach(async (author) => {
-  //     await newAuthor.mutateAsync({ author: author });
-  //     console.log("author", author);
-  //     await utils.books.invalidate();
-  //   });
-  // };
-
   const onSubmit: SubmitHandler<Book> = async (data: Book) => {
     console.log("data", data.author);
-
-    try {
-      await newAuthor.mutateAsync({ author: data.author });
-    } catch (error) {
-      console.error(error);
-    }
-    // await newAuthor.mutateAsync({ author: data.author });
   };
 
   return (
@@ -61,9 +42,7 @@ const AllOptions = () => {
       >
         <Input {...form.register("title")} className="w-96" />
         <Button type="submit">Submit</Button>
-        <div>
-          <GenSearch />
-        </div>
+        <div></div>
         {/* {books?.map((book) => {
           return <li key={book.id}>{book.author}</li>;
         })} */}
