@@ -34,7 +34,7 @@ const Author = () => {
 
   const onSubmit: SubmitHandler<Book> = async (data: Book) => {
     console.log("data", data.author);
-    refetch();
+    await refetch();
   };
 
   return (
@@ -46,19 +46,26 @@ const Author = () => {
         Author
         <Input {...form.register("author")} className="w-96" />
         <Button type="submit">Submit</Button>
-        {books !== undefined
-          ? books.map((book) => {
-              return (
-                <ul key={book.id}>
-                  <li>{book.genre}</li>
-                  <li>{book.rating}</li>
-                  <li>{book.title}</li>
-                  {/* <li>{book.author ? book.author : ""}</li> */}
-                </ul>
-              );
-            })
-          : ""}
-        <Button onClick={handleSet}>Set</Button>
+        <h1>Books by {form.getValues("author")}</h1>
+        {books?.map((book) => {
+          return (
+            <ul key={book.id}>
+              <li>{book.genre}</li>
+              <li>{book.rating}</li>
+              <li>{book.title}</li>
+              <li>Books by {book.author.name}</li>
+              {/* <li>{book.author ? book.author : ""}</li> */}
+            </ul>
+          );
+        })}
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            handleSet;
+          }}
+        >
+          Set
+        </Button>
         {/* <div></div> */}
       </form>
     </FormProvider>

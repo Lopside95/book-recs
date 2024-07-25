@@ -38,6 +38,9 @@ export const authorRouter = createRouter({
       where: {
         authorId: author?.id,
       },
+      include: {
+        author: true,
+      },
     });
 
     return biblio;
