@@ -8,11 +8,12 @@ generator client {
 }
 
 model Book {
-    id     String @id @default(auto()) @map("_id") @db.ObjectId
-    genre  String
-    author String
-    rating Int
-    title  String
+    id       String @id @default(auto()) @map("_id") @db.ObjectId
+    genre    String
+    author   Author @relation(fields: [authorId], references: [id])
+    rating   Int
+    title    String
+    authorId String @db.ObjectId
 }
 
 // model Book {
@@ -34,6 +35,7 @@ model Book {
 model Author {
     id   String @id @default(auto()) @map("_id") @db.ObjectId
     name String
+    Book Book[]
 }
 
 model Genre {

@@ -27,7 +27,7 @@ const AllOptions = () => {
   //   const id = book.id
   // })
 
-  const allAuthors = books?.map((book) => book.author);
+  const allAuthors = books?.map((book) => book.authorId);
 
   // console.log("allAuthors", allAuthors);
 

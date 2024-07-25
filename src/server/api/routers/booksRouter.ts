@@ -40,6 +40,26 @@ const booksRouter = createRouter({
 
     return authors;
   }),
+  getDon: publicProcedure.input(booksSchema).query(async ({ input }) => {
+    const something = await prisma.book.findFirst({
+      where: {
+        authorId: input.author.id,
+      },
+    });
+
+    // const delId = await prisma.author.findFirst({
+    //   where: {
+    //     name: "Don DeLillo",
+    //   },
+    // });
+
+    // return delId;
+    // const delillo = await prisma.book.findMany({
+    //   where: {
+    //     author: "Don DeLillo",
+    //   },
+    // });
+  }),
   // booksByAuthor: publicProcedure.input(booksSchema).query(async ({ input }) => {
   //   try {
   //     const books = await prisma.book.findMany({
