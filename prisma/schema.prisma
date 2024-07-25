@@ -9,11 +9,15 @@ generator client {
 
 model Book {
     id       String @id @default(auto()) @map("_id") @db.ObjectId
-    genre    String
+    genre    Genre  @relation(fields: [genreId], references: [id])
     author   Author @relation(fields: [authorId], references: [id])
     rating   Int
     title    String
     authorId String @db.ObjectId
+    genreId  String @db.ObjectId
+
+    @@index([genreId])
+    @@index([authorId])
 }
 
 // model Book {
@@ -41,12 +45,13 @@ model Author {
 model Genre {
     id   String @id @default(auto()) @map("_id") @db.ObjectId
     name String
+    Book Book[]
 }
 
-model Rating {
-    id         String @id @default(auto()) @map("_id") @db.ObjectId
-    bookRating Int
-}
+// model Rating {
+//     id         String @id @default(auto()) @map("_id") @db.ObjectId
+//     bookRating Int
+// }
 
 // model Testing {
 //     id       String @id @default(auto()) @map("_id") @db.ObjectId

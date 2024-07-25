@@ -50,7 +50,7 @@ const Author = () => {
         {books?.map((book) => {
           return (
             <ul key={book.id}>
-              <li>{book.genre}</li>
+              <li>{book.genre.name}</li>
               <li>{book.rating}</li>
               <li>{book.title}</li>
               <li>Books by {book.author.name}</li>

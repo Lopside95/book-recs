@@ -40,6 +40,7 @@ export const authorRouter = createRouter({
       },
       include: {
         author: true,
+        genre: true,
       },
     });
 
