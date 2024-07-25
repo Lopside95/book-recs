@@ -8,54 +8,51 @@ generator client {
 }
 
 model Book {
-    id       String @id @default(auto()) @map("_id") @db.ObjectId
-    genre    Genre  @relation(fields: [genreId], references: [id])
-    author   Author @relation(fields: [authorId], references: [id])
-    rating   Rating @relation(fields: [ratingId], references: [id])
-    title    String
-    genreId  String @db.ObjectId
-    authorId String @db.ObjectId
-    ratingId String @db.ObjectId
-
-    @@index([genreId])
-    @@index([authorId])
-    @@index([ratingId])
-    @@index([title])
+    id     String @id @default(auto()) @map("_id") @db.ObjectId
+    genre  String
+    author String
+    rating Int
+    title  String
 }
+
+// model Book {
+//     id       String @id @default(auto()) @map("_id") @db.ObjectId
+//     genre    Genre  @relation(fields: [genreId], references: [id])
+//     author   Author @relation(fields: [authorId], references: [id])
+//     rating   Rating @relation(fields: [ratingId], references: [id])
+//     title    String
+//     genreId  String @db.ObjectId
+//     authorId String @db.ObjectId
+//     ratingId String @db.ObjectId
+
+//     @@index([genreId])
+//     @@index([authorId])
+//     @@index([ratingId])
+//     @@index([title])
+// }
 
 model Author {
     id   String @id @default(auto()) @map("_id") @db.ObjectId
     name String
-    Book Book[]
 }
 
 model Genre {
     id   String @id @default(auto()) @map("_id") @db.ObjectId
     name String
-    Book Book[]
 }
 
 model Rating {
     id         String @id @default(auto()) @map("_id") @db.ObjectId
     bookRating Int
-    Book       Book[]
 }
 
-model Testing {
-    id       String @id @default(auto()) @map("_id") @db.ObjectId
-    question String
-    answer   String
-}
+// model Testing {
+//     id       String @id @default(auto()) @map("_id") @db.ObjectId
+//     question String
+//     answer   String
+// }
 
-model Yes {
-    id   String @id @default(auto()) @map("_id") @db.ObjectId
-    what String
-}
-
-// model Book {
-//     id     String @id @default(auto()) @map("_id") @db.ObjectId
-//     genre  String
-//     author String
-//     rating Int
-//     title  String
+// model Yes {
+//     id   String @id @default(auto()) @map("_id") @db.ObjectId
+//     what String
 // }

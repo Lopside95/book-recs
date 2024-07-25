@@ -22,60 +22,78 @@ const booksRouter = createRouter({
 
     return allBooks;
   }),
-  booksByAuthor: publicProcedure.input(booksSchema).query(async ({ input }) => {
-    try {
-      const books = await prisma.book.findMany({
-        where: {
-          authorId: input.author,
-        },
-      });
-      return books;
-    } catch (error) {
-      console.error(error);
-    }
-  }),
-  booksByGenre: publicProcedure.input(booksSchema).query(async ({ input }) => {
-    const genreBooks = await prisma.book.findMany({
-      where: {
-        genreId: input.genre,
-      },
-    });
-
-    return genreBooks;
-  }),
-  getSingle: publicProcedure.input(findBookSchema).query(async ({ input }) => {
-    const chosenBook = await prisma.book.findFirst({
-      where: {
-        authorId: input.author,
-      },
-    });
-    return chosenBook;
-  }),
-  getAuthors: publicProcedure.input(booksSchema).query(async () => {
-    try {
-      await prisma.author.findMany();
-    } catch (error) {
-      console.error(error);
-    }
-  }),
-  generateAuthors: publicProcedure
-    .input(z.string())
+  createAuthor: publicProcedure
+    .input(booksSchema)
     .mutation(async ({ input }) => {
-      const allBooks = await prisma.book.findMany();
-
-      const newAuthor = await prisma.author.create({
-        data: {
-          name: input,
-        },
-      });
-
-      return newAuthor;
-      // const allAuthors = await prisma.book.findMany({
-      //   where: {
-      //     authorId: author
-      //   }
-      // })
+      try {
+        await prisma.author.createMany({
+          data: {
+            name: input.author,
+          },
+        });
+      } catch (error) {
+        console.error(error);
+      }
     }),
+  getAuthors: publicProcedure.query(async () => {
+    const authors = prisma.author.findMany();
+
+    return authors;
+  }),
+  // booksByAuthor: publicProcedure.input(booksSchema).query(async ({ input }) => {
+  //   try {
+  //     const books = await prisma.book.findMany({
+  //       where: {
+  //         authorId: input.author,
+  //       },
+  //     });
+  //     return books;
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // }),
+  // booksByGenre: publicProcedure.input(booksSchema).query(async ({ input }) => {
+  //   const genreBooks = await prisma.book.findMany({
+  //     where: {
+  //       genreId: input.genre,
+  //     },
+  //   });
+
+  //   return genreBooks;
+  // }),
+  // // getSingle: publicProcedure.input(findBookSchema).query(async ({ input }) => {
+  // //   const chosenBook = await prisma.book.findFirst({
+  // //     where: {
+  // //       authorId: input.author,
+  // //     },
+  // //   });
+  // //   return chosenBook;
+  // // }),
+  // // getAuthors: publicProcedure.input(booksSchema).query(async () => {
+  // //   try {
+  // //     await prisma.author.findMany();
+  // //   } catch (error) {
+  // //     console.error(error);
+  // //   }
+  // // }),
+  // // generateAuthors: publicProcedure
+  // //   .input(z.string())
+  // //   .mutation(async ({ input }) => {
+  // //     const allBooks = await prisma.book.findMany();
+
+  // //     const newAuthor = await prisma.author.create({
+  // //       data: {
+  // //         name: input,
+  // //       },
+  // //     });
+
+  // //     return newAuthor;
+  // const allAuthors = await prisma.book.findMany({
+  //   where: {
+  //     authorId: author
+  //   }
+  // })
+  // }),
 
   //   booksByAuthor: publicProcedure.query(async () => {
   //     const bibli = await prisma.books.findMany({
