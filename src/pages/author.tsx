@@ -19,7 +19,7 @@ const Author = () => {
 
   const utils = trpc.useUtils();
 
-  const { data: books, refetch } = trpc.author.booksByAuthor.useQuery(
+  const { data: books, refetch } = trpc.booksByAuthor.useQuery(
     { author: form.getValues("author") },
     { enabled: false }
   );

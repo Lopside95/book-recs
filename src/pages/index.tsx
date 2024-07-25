@@ -35,7 +35,7 @@ const Home = () => {
   const [bookRec, setBookRec] = useState<Book>();
   const [isThinking, setIsThinking] = useState<boolean>(false);
 
-  const { data: book } = trpc.books.getSingle.useQuery({
+  const { data: book } = trpc.getSingle.useQuery({
     author: form.watch("author") ?? "",
   });
 

@@ -20,7 +20,7 @@ const BookFormPage = () => {
     resolver: zodResolver(booksSchema),
   });
 
-  const { data: books } = trpc.author.booksByAuthor.useQuery({
+  const { data: books } = trpc.booksByAuthor.useQuery({
     author: chosenAuthor ?? "",
   });
 

@@ -7,7 +7,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, SubmitHandler, useForm } from "react-hook-form";
 
 const AllOptions = () => {
-  const { data: books } = trpc.books.getBooks.useQuery();
+  const { data: books } = trpc.getBooks.useQuery();
 
   const form = useForm<Book>({
     resolver: zodResolver(booksSchema),
@@ -22,7 +22,7 @@ const AllOptions = () => {
 
   // console.log("allAuthors", allAuthors);
 
-  const { data: authors } = trpc.author.getAuthors.useQuery(undefined, {
+  const { data: authors } = trpc.getAuthors.useQuery(undefined, {
     enabled: false,
   });
 
