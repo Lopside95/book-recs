@@ -8,9 +8,10 @@ export const booksSchema = z.object({
 });
 
 export const findBookSchema = z.object({
+  title: z.string(),
   genre: z.string(),
   author: z.string(),
-  rating: z.string(),
+  rating: z.number(),
 });
 
 // export const booksSchema = z.object({

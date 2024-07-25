@@ -1,7 +1,8 @@
 import { prisma } from "@/server/db";
 import { createRouter, publicProcedure } from "../trpc";
 import { TRPCError } from "@trpc/server";
-import { booksSchema } from "@/types/books";
+import { booksSchema, findBookSchema } from "@/types/books";
+import { z } from "zod";
 
 const booksRouter = createRouter({
   getBooks: publicProcedure.query(async () => {
@@ -25,7 +26,7 @@ const booksRouter = createRouter({
     try {
       const books = await prisma.book.findMany({
         where: {
-          author: input.author,
+          authorId: input.author,
         },
       });
       return books;
@@ -36,25 +37,46 @@ const booksRouter = createRouter({
   booksByGenre: publicProcedure.input(booksSchema).query(async ({ input }) => {
     const genreBooks = await prisma.book.findMany({
       where: {
-        genre: input.genre,
+        genreId: input.genre,
       },
     });
 
     return genreBooks;
   }),
-  getSingle: publicProcedure.input(booksSchema).query(async ({ input }) => {
+  getSingle: publicProcedure.input(findBookSchema).query(async ({ input }) => {
     const chosenBook = await prisma.book.findFirst({
       where: {
-        author: input.author,
+        authorId: input.author,
       },
     });
     return chosenBook;
   }),
-  // getAuthors: publicProcedure.input(booksSchema).query(async ({input}) => {
-  //   try {
-  //     await prisma.book.findMany
-  //   }
-  // })
+  getAuthors: publicProcedure.input(booksSchema).query(async () => {
+    try {
+      await prisma.author.findMany();
+    } catch (error) {
+      console.error(error);
+    }
+  }),
+  generateAuthors: publicProcedure
+    .input(z.string())
+    .mutation(async ({ input }) => {
+      const allBooks = await prisma.book.findMany();
+
+      const newAuthor = await prisma.author.create({
+        data: {
+          name: input,
+        },
+      });
+
+      return newAuthor;
+      // const allAuthors = await prisma.book.findMany({
+      //   where: {
+      //     authorId: author
+      //   }
+      // })
+    }),
+
   //   booksByAuthor: publicProcedure.query(async () => {
   //     const bibli = await prisma.books.findMany({
   //       where: {
