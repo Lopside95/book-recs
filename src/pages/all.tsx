@@ -1,3 +1,4 @@
+import GenSearch from "@/components/genSearch";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { prisma } from "@/server/db";
@@ -14,7 +15,7 @@ const AllOptions = () => {
     defaultValues: {},
   });
 
-  const newAuthor = trpc.books.createAuthor.useMutation({
+  const newAuthor = trpc.author.createAuthor.useMutation({
     onSuccess: () => console.log("author created"),
     onError: (error) => console.error("Error creating author:", error),
   });
@@ -29,19 +30,17 @@ const AllOptions = () => {
 
   const allAuthors = books?.map((book) => book.authorId);
 
-  // console.log("allAuthors", allAuthors);
+  const { data: authors } = trpc.author.getAuthors.useQuery();
 
-  const { data: authors } = trpc.books.getAuthors.useQuery();
+  // console.log("authors", authors);
 
-  console.log("authors", authors);
-
-  const handleCreate = () => {
-    allAuthors?.forEach(async (author) => {
-      await newAuthor.mutateAsync({ author: author });
-      console.log("author", author);
-      await utils.books.invalidate();
-    });
-  };
+  // const handleCreate = () => {
+  //   allAuthors?.forEach(async (author) => {
+  //     await newAuthor.mutateAsync({ author: author });
+  //     console.log("author", author);
+  //     await utils.books.invalidate();
+  //   });
+  // };
 
   const onSubmit: SubmitHandler<Book> = async (data: Book) => {
     console.log("data", data.author);
@@ -60,13 +59,15 @@ const AllOptions = () => {
         className="flex flex-col pt-20 gap-4 items-center"
         onSubmit={form.handleSubmit(onSubmit)}
       >
-        <Input {...form.register("author")} className="w-96" />
+        <Input {...form.register("title")} className="w-96" />
         <Button type="submit">Submit</Button>
-
+        <div>
+          <GenSearch />
+        </div>
         {/* {books?.map((book) => {
           return <li key={book.id}>{book.author}</li>;
         })} */}
-        <Button onClick={handleCreate}>Create</Button>
+        {/* <Button onClick={handleCreate}>Create</Button> */}
       </form>
     </FormProvider>
   );

@@ -22,44 +22,27 @@ const booksRouter = createRouter({
 
     return allBooks;
   }),
-  createAuthor: publicProcedure
-    .input(booksSchema)
-    .mutation(async ({ input }) => {
-      try {
-        await prisma.author.createMany({
-          data: {
-            name: input.author,
-          },
-        });
-      } catch (error) {
-        console.error(error);
-      }
-    }),
-  getAuthors: publicProcedure.query(async () => {
-    const authors = prisma.author.findMany();
-
-    return authors;
-  }),
-  getDon: publicProcedure.input(booksSchema).query(async ({ input }) => {
-    const something = await prisma.book.findFirst({
+  getBook: publicProcedure.input(booksSchema).query(async ({ input }) => {
+    const theBook = await prisma.book.findFirst({
       where: {
-        authorId: input.author.id,
+        title: input.title,
       },
     });
 
-    // const delId = await prisma.author.findFirst({
-    //   where: {
-    //     name: "Don DeLillo",
-    //   },
-    // });
-
-    // return delId;
-    // const delillo = await prisma.book.findMany({
-    //   where: {
-    //     author: "Don DeLillo",
-    //   },
-    // });
+    return theBook;
   }),
+  // const delId = await prisma.author.findFirst({
+  //   where: {
+  //     name: "Don DeLillo",
+  //   },
+  // });
+
+  // return delId;
+  // const delillo = await prisma.book.findMany({
+  //   where: {
+  //     author: "Don DeLillo",
+  //   },
+  // });
   // booksByAuthor: publicProcedure.input(booksSchema).query(async ({ input }) => {
   //   try {
   //     const books = await prisma.book.findMany({
