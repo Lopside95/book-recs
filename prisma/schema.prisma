@@ -12,12 +12,24 @@ model Book {
     genre    Genre  @relation(fields: [genreId], references: [id])
     author   Author @relation(fields: [authorId], references: [id])
     rating   Int
-    title    String
+    title    String @unique
     authorId String @db.ObjectId
     genreId  String @db.ObjectId
 
     @@index([genreId])
     @@index([authorId])
+}
+
+model Author {
+    id   String @id @default(auto()) @map("_id") @db.ObjectId
+    name String @unique
+    Book Book[]
+}
+
+model Genre {
+    id   String @id @default(auto()) @map("_id") @db.ObjectId
+    name String @unique
+    Book Book[]
 }
 
 // model Book {
@@ -35,19 +47,6 @@ model Book {
 //     @@index([ratingId])
 //     @@index([title])
 // }
-
-model Author {
-    id   String @id @default(auto()) @map("_id") @db.ObjectId
-    name String
-    Book Book[]
-}
-
-model Genre {
-    id   String @id @default(auto()) @map("_id") @db.ObjectId
-    name String
-    Book Book[]
-}
-
 // model Rating {
 //     id         String @id @default(auto()) @map("_id") @db.ObjectId
 //     bookRating Int

@@ -1,4 +1,4 @@
-import { booksSchema } from "@/types/books";
+import { booksSchema, createBookSchema } from "@/types/books";
 import { createRouter, publicProcedure } from "./trpc";
 import { z } from "zod";
 import { TRPCError } from "@trpc/server";
@@ -25,9 +25,58 @@ export const appRouter = createRouter({
         title: input.title,
       },
     });
-
     return theBook;
   }),
+  createBook: publicProcedure
+    .input(createBookSchema)
+    .mutation(async ({ input }) => {
+      const newBook = await prisma.book.create({
+        data: {
+          title: input.title,
+          rating: input.rating,
+          genre: {
+            connectOrCreate: {
+              create: {
+                name: input.genre,
+              },
+              where: {
+                name: input.genre,
+              },
+            },
+          },
+          author: {
+            connectOrCreate: {
+              create: {
+                name: input.author,
+              },
+              where: {
+                name: input.author,
+              },
+            },
+          },
+        },
+      });
+
+      return newBook;
+
+      // const genreName = await prisma.genre.findUnique({
+      //   where: {
+      //     id: input.genre
+      //   }
+      // })
+
+      // const genreExists: boolean = genreName ? true : false
+
+      // const newBook = await prisma.book.create({
+      //   data: {
+      //     title: input.title,
+      //     rating: input.rating,
+      //     genre: !genreExists ? input.genre : connect: {genre: genreId}
+      //     // author: input.author,
+
+      //   }
+      // })
+    }),
   getAuthors: publicProcedure.query(async () => {
     const authors = prisma.author.findMany();
 

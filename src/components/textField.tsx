@@ -22,7 +22,7 @@ const TextField = ({ name, type, label }: TextProps) => {
             <FormLabel>{label}</FormLabel>
             <FormMessage className="text-red-300" />
             <FormControl>
-              <Input {...field} />
+              <Input {...field} className="w-80" />
             </FormControl>
           </FormItem>
         </>
