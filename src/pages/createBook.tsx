@@ -12,8 +12,12 @@ const CreateBook = () => {
     defaultValues: { rating: 9 },
   });
 
+  // could fetch rating from goodreads?
+
   const createNewBook = trpc.createBook.useMutation({
-    onSuccess: () => console.log("new Book created"),
+    onSuccess: () => {
+      console.log("new Book created"), form.setValue("title", "");
+    },
   });
 
   const onSubmit: SubmitHandler<CreateBookForm> = async (
@@ -37,8 +41,8 @@ const CreateBook = () => {
         <TextField label="Author" name="author" />
         <TextField label="genre" name="genre" />
         <Input
-          {...form.register("rating")}
-          type="number"
+          {...form.register("rating", { valueAsNumber: true })}
+          // type="number"
           className="w-80"
           placeholder="rating"
         />

@@ -11,7 +11,7 @@ export const createBookSchema = z.object({
   title: z.string().min(1, "need title"),
   genre: z.string().min(1, "need genre"),
   author: z.string().min(1, "need author"),
-  rating: z.number().min(1, "need rating"),
+  rating: z.number().min(1, "need rating").max(10),
   // authorId: z.string().optional(),
   // genreId: z.string().optional(),
 });

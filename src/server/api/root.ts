@@ -83,7 +83,7 @@ export const appRouter = createRouter({
     return authors;
   }),
   booksByAuthor: publicProcedure.input(booksSchema).query(async ({ input }) => {
-    const author = await prisma.author.findFirst({
+    const author = await prisma.author.findUnique({
       where: {
         name: input.author,
       },

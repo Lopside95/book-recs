@@ -22,7 +22,7 @@ import { useState } from "react";
 const AuthorDropdown = () => {
   const { control, getValues } = useFormContext();
 
-  const { data: authors, refetch } = trpc.author.getAuthors.useQuery();
+  const { data: authors, refetch } = trpc.getAuthors.useQuery();
 
   // const { data: authors, refetch } = trpc.author.getAuthors.useQuery(
   //   undefined,
