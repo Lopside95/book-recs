@@ -1,4 +1,5 @@
 import AuthorDropdown from "@/components/authorDropdown";
+import RatingBar from "@/components/ratingBar";
 import { Button } from "@/components/ui/button";
 import { Book, booksSchema } from "@/types/books";
 import { trpc } from "@/utils/trpc";
@@ -38,7 +39,10 @@ const Menu = () => {
               <li>{book.title}</li>
               <li> {book.author.name}</li>
               <li>{book.genre.name}</li>
-              <li>Rating: {book.rating}</li>
+              <span className="flex gap-2">
+                <li>Rating: {book.rating}</li>
+                <RatingBar rating={book.rating} />
+              </span>
             </ul>
           );
         })}
