@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 type BarProps = {
-  rating: number;
+  rating?: number;
 };
 
 const RatingBar = ({ rating }: BarProps) => {
