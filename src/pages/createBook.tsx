@@ -42,7 +42,6 @@ const CreateBook = () => {
         <TextField label="genre" name="genre" />
         <Input
           {...form.register("rating", { valueAsNumber: true })}
-          // type="number"
           className="w-80"
           placeholder="rating"
         />

@@ -16,13 +16,7 @@ export type CloudProps = {
   show: boolean;
 };
 
-const Clouds = ({
-  // isThinking,
-  // setIsThinking,
-  times,
-  setTimes,
-  bookRec,
-}: CloudInfo) => {
+const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
   const cycle = useAnimationControls();
 
   const handleCycle = async () => {
@@ -30,24 +24,12 @@ const Clouds = ({
       await cycle.start("show");
       await cycle.start("hide");
       setTimes(times + 1);
-    } else {
-      // setIsThinking(false);
     }
-
-    // else {
-    //   setTimes(0);
-    // }
   };
 
   useEffect(() => {
     handleCycle();
   }, [times]);
-
-  // useEffect(() => {
-  //   handleCycle();
-  //   // const intervalId = setInterval(handleCycle, 3000);
-  //   // return () => clearInterval(intervalId);
-  // }, [times]);
 
   return (
     <>
@@ -80,8 +62,7 @@ const Clouds = ({
             <CloudPic text={bookRec?.genre} show={times > 0} />
             {/* <p className="absolute top-96 left-48">{bookRec?.genre}</p> */}
           </motion.div>
-          {/* </AnimatePresence>
-        <AnimatePresence> */}
+
           <motion.div
             animate={cycle}
             className="absolute w-56 top-48 right-96"
@@ -108,8 +89,6 @@ const Clouds = ({
           >
             <CloudPic show={times > 1} text={bookRec?.author} />
           </motion.div>
-          {/* </AnimatePresence>
-        <AnimatePresence> */}
           <motion.div
             animate={cycle}
             className="absolute w-64 top-10 right-20"

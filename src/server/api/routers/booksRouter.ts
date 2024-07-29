@@ -67,14 +67,14 @@
 
 //   //   return genreBooks;
 //   // }),
-//   // // getSingle: publicProcedure.input(findBookSchema).query(async ({ input }) => {
-//   // //   const chosenBook = await prisma.book.findFirst({
-//   // //     where: {
-//   // //       authorId: input.author,
-//   // //     },
-//   // //   });
-//   // //   return chosenBook;
-//   // // }),
+//   getSingle: publicProcedure.input(findBookSchema).query(async ({ input }) => {
+//     const chosenBook = await prisma.book.findFirst({
+//       where: {
+//         authorId: input.author,
+//       },
+//     });
+//     return chosenBook;
+//   }),
 //   // // getAuthors: publicProcedure.input(booksSchema).query(async () => {
 //   // //   try {
 //   // //     await prisma.author.findMany();

@@ -7,7 +7,7 @@ import { Book, booksSchema } from "@/types/books";
 import { zodResolver } from "@hookform/resolvers/zod";
 import TextField from "@/components/textField";
 import { Button } from "@/components/ui/button";
-import React, { SetStateAction, useState } from "react";
+import React, { SetStateAction, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { register } from "module";
 import RatingBar from "@/components/ratingBar";
@@ -54,23 +54,23 @@ const FullRandom = () => {
     });
     console.log("book", book);
   };
+
+  useEffect(() => {
+    refetch();
+  }, []);
+
+  //todo: add delay
+
   return (
-    // <FormProvider {...form}>
-    //   <form
-    //     className="flex flex-col pt-20 gap-4 items-center"
-    //     onSubmit={form.handleSubmit(onSubmit)}
-    //   >
     <div className="flex justify-center pt-20 gap-4 items-center">
       <Clouds setTimes={setTimes} times={times} bookRec={bookRec} />
       <div className="">
-        <div>{book?.title}</div>
-        <div>{book?.author.name}</div>
-        <div>{book?.genre.name}</div>
-        <RatingBar rating={book?.rating} />
-        {/* <span className="flex items-center gap-2">
-          <p>{book?.rating}</p>
-          <RatingBar rating={book?.rating} />
-        </span> */}
+        {times > 2 && <div>{bookRec?.title}</div>}
+        {times > 1 && <div>{bookRec?.author}</div>}
+        {times > 0 && <div>{bookRec?.genre}</div>}
+
+        <RatingBar rating={bookRec?.rating} />
+
         <Button onClick={handleClick}>find a book</Button>
       </div>
     </div>

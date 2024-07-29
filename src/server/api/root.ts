@@ -121,7 +121,14 @@ export const appRouter = createRouter({
 
     return biblio;
   }),
-
+  getSingle: publicProcedure.input(booksSchema).query(async ({ input }) => {
+    const chosenBook = await prisma.book.findFirst({
+      where: {
+        authorId: input.author,
+      },
+    });
+    return chosenBook;
+  }),
   // books: booksRouter,
   // author: authorRouter,
 });

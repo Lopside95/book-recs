@@ -40,9 +40,9 @@ const Home = () => {
   });
 
   const onSubmit: SubmitHandler<Pick<Book, "author">> = async (data: Book) => {
-    setTimes(0);
-    setBookRec(book);
-    console.log("bookRec", bookRec);
+    // setTimes(0);
+    // setBookRec(book);
+    // console.log("bookRec", bookRec);
   };
 
   const handleGet = () => {};
@@ -54,7 +54,6 @@ const Home = () => {
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <TextField label="Get By Author" name="author" />
-        {/* <li>{book?.r}</li> */}
         {times}
         <div className="flex gap-4">
           {times === 4 && !isThinking ? (
@@ -63,28 +62,14 @@ const Home = () => {
               <li>{bookRec?.author}</li>
               <li>{bookRec?.genre}</li>
               <li>{bookRec?.rating}</li>
-              {/* <li> {book?.title}</li>
-              <li>{book?.author}</li>
-              <li>{book?.genre}</li>
-              <li>{book?.rating}</li> */}
             </div>
           ) : (
             <p>...</p>
           )}
 
-          {/* <p>{books[0].title}</p> */}
           <Button type="submit">Get author</Button>
         </div>
-        <Clouds
-          setIsThinking={setIsThinking}
-          isThinking={isThinking}
-          setTimes={setTimes}
-          times={times}
-        />
-        {/* <Clouds isThinking={isThinking} setIsThinking={setIsThinking} /> */}
-        {/* <Button type="submit">Get author</Button> */}
-        {/* <Clouds />
-      <BookForm /> */}
+        <Clouds setTimes={setTimes} times={times} />
       </form>
     </FormProvider>
   );

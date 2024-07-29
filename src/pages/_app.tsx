@@ -15,7 +15,3 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   );
 };
 export default trpc.withTRPC(MyApp);
-
-// export default function App({ Component, pageProps }: AppProps) {
-//   return <Component {...pageProps} />;
-// }
