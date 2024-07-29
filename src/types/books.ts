@@ -32,6 +32,6 @@ export interface CloudInfo {
   setTimes: React.Dispatch<SetStateAction<number>>;
   bookRec?: Book;
   // book?: Book;
-  isThinking?: boolean;
-  setIsThinking: React.Dispatch<SetStateAction<boolean>>;
+  // isThinking?: boolean;
+  // setIsThinking: React.Dispatch<SetStateAction<boolean>>;
 }

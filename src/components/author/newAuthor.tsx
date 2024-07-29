@@ -16,7 +16,7 @@ const NewAuthor = () => {
   //   });
   // };
 
-  const newAuthor = trpc.author.createAuthor.useMutation({
+  const newAuthor = trpc.createAuthor.useMutation({
     onSuccess: () => console.log("author created"),
     onError: (error) => console.error("Error creating author:", error),
   });

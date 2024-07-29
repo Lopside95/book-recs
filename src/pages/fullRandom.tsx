@@ -39,7 +39,7 @@ const FullRandom = () => {
   });
 
   const [bookRec, setBookRec] = useState<Book>();
-  const [isThinking, setIsThinking] = useState<boolean>(false);
+  // const [isThinking, setIsThinking] = useState<boolean>(false);
 
   // const onSubmit: SubmitHandler<Book> = async () => {};
 
@@ -60,24 +60,19 @@ const FullRandom = () => {
     //     className="flex flex-col pt-20 gap-4 items-center"
     //     onSubmit={form.handleSubmit(onSubmit)}
     //   >
-    <div className="flex flex-col pt-20 gap-4 items-center">
+    <div className="flex justify-center pt-20 gap-4 items-center">
+      <Clouds setTimes={setTimes} times={times} bookRec={bookRec} />
       <div className="">
         <div>{book?.title}</div>
         <div>{book?.author.name}</div>
         <div>{book?.genre.name}</div>
-        <span className="flex items-center gap-2">
+        <RatingBar rating={book?.rating} />
+        {/* <span className="flex items-center gap-2">
           <p>{book?.rating}</p>
           <RatingBar rating={book?.rating} />
-        </span>
+        </span> */}
         <Button onClick={handleClick}>find a book</Button>
       </div>
-      <Clouds
-        setIsThinking={setIsThinking}
-        isThinking={isThinking}
-        setTimes={setTimes}
-        times={times}
-        bookRec={bookRec}
-      />
     </div>
   );
 };
