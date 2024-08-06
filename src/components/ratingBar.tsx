@@ -11,17 +11,21 @@ const RatingBar = ({ rating }: BarProps) => {
   const [score, setScore] = useState<number | undefined>(0);
 
   const handleScore = async () => {
-    await controls.start("reset");
-    // setScore(rating / 10);
-    setTimeout(() => {
-      controls.start("go");
-    }, 400);
+    await setScore(rating / 10);
+
+    // await controls.start("reset");
+    // // setScore(rating / 10);
+    // setTimeout(() => {
+    //   controls.start("go");
+    // }, 400);
 
     // setScore(rating / 10);
   };
 
   useEffect(() => {
-    setScore(rating / 10);
+    handleScore();
+
+    // setScore(rating / 10);
     // handleScore();
     // setScore(0);
     // setScore(rating / 10);

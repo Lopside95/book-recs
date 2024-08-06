@@ -22,7 +22,7 @@ import { useState } from "react";
 const GenreDropdown = () => {
   const { control, getValues } = useFormContext();
 
-  const { data: genres, refetch } = trpc.author.getAuthors.useQuery();
+  const { data: genres, refetch } = trpc.getGenres.useQuery();
 
   // const { data: authors, refetch } = trpc.author.getAuthors.useQuery(
   //   undefined,
@@ -30,6 +30,8 @@ const GenreDropdown = () => {
   // );
 
   const [fieldValue, setFieldValue] = useState();
+
+  console.log("genres", genres);
 
   return (
     <>

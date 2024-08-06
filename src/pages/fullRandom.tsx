@@ -61,13 +61,30 @@ const FullRandom = () => {
 
   //todo: add delay
 
+  // const baseUrl = "https://openlibrary.org/search.json";
+
+  // // const donny = {`${baseUrl}`}
+  // const donny = "https://openlibrary.org/search?q=Don+de+lillo&mode=everything";
+
+  // const fetchDon = async () => {
+  //   const res = await fetch(donny);
+
+  //   const data = await res.json();
+
+  //   console.log("data", data);
+  // };
+
+  // useEffect(() => {
+  //   fetchDon();
+  // }, []);
+
   return (
     <div className="flex justify-center pt-20 gap-4 items-center">
       <Clouds setTimes={setTimes} times={times} bookRec={bookRec} />
       <div className="">
-        {times > 2 && <div>{bookRec?.title}</div>}
-        {times > 1 && <div>{bookRec?.author}</div>}
-        {times > 0 && <div>{bookRec?.genre}</div>}
+        {times > 3 && <div>{bookRec?.title}</div>}
+        {times > 2 && <div>{bookRec?.author}</div>}
+        {times > 1 && <div className="">{bookRec?.genre}</div>}
 
         <RatingBar rating={bookRec?.rating} />
 

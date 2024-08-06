@@ -1,4 +1,5 @@
 import AuthorDropdown from "@/components/authorDropdown";
+import GenreDropdown from "@/components/genreDropdown";
 import RatingBar from "@/components/ratingBar";
 import { Button } from "@/components/ui/button";
 import { Book, booksSchema } from "@/types/books";
@@ -46,6 +47,9 @@ const Menu = () => {
             </ul>
           );
         })}
+
+        <GenreDropdown />
+
         <Button type="submit">Submit</Button>
       </form>
     </FormProvider>

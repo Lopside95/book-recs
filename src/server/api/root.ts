@@ -131,6 +131,11 @@ export const appRouter = createRouter({
   }),
   // books: booksRouter,
   // author: authorRouter,
+  getGenres: publicProcedure.query(async ({ input }) => {
+    const genres = await prisma.genre.findMany();
+
+    return genres;
+  }),
 });
 
 export type AppRouter = typeof appRouter;
