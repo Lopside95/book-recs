@@ -1,6 +1,5 @@
 "use client";
 
-import { BookForm } from "@/pages";
 import { Book, CloudInfo } from "@/types/books";
 import {
   AnimatePresence,
@@ -34,6 +33,8 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
   return (
     <>
       <div className="relative w-[850px] self-center border-4 h-[500px]">
+        <Image src="/thinking.png" width={200} height={200} alt="" />
+
         <AnimatePresence>
           <motion.div
             animate={cycle}
