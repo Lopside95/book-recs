@@ -5,13 +5,17 @@ type BarProps = {
   rating?: number;
 };
 
+// Add a default value for the rating prop
 const RatingBar = ({ rating }: BarProps) => {
   const controls = useAnimationControls();
 
   const [score, setScore] = useState<number | undefined>(0);
 
   const handleScore = async () => {
-    await setScore(rating / 10);
+    if (rating !== undefined) {
+      setScore(rating / 10);
+    }
+    // await setScore(rating / 10);
 
     // await controls.start("reset");
     // // setScore(rating / 10);
@@ -63,7 +67,6 @@ const RatingBar = ({ rating }: BarProps) => {
     </AnimatePresence>
   );
 };
-
 export default RatingBar;
 
 // initial="initial"
@@ -87,3 +90,4 @@ export default RatingBar;
 //   },
 // }}
 // animate={controls}
+//

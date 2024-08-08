@@ -32,13 +32,19 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
 
   return (
     <>
-      <div className="relative w-[850px] self-center border-4 h-[500px]">
-        <Image src="/thinking.png" width={200} height={200} alt="" />
+      <div className="relative w-[850px] self-center border-4 h-[600px]">
+        <Image
+          src="/thinking.png"
+          width={200}
+          height={200}
+          className="w-40 absolute bottom-2 left-2"
+          alt=""
+        />
 
         <AnimatePresence>
           <motion.div
             animate={cycle}
-            className="absolute w-48 top-80 left-20"
+            className="absolute w-48 top-60 left-20"
             initial="initial"
             transition={{
               duration: 0.4,
@@ -66,7 +72,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
 
           <motion.div
             animate={cycle}
-            className="absolute w-56 top-48 right-96"
+            className="absolute w-56 top-48 right-80"
             initial="initial"
             transition={{
               duration: 0.4,
@@ -92,7 +98,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
           </motion.div>
           <motion.div
             animate={cycle}
-            className="absolute w-64 top-10 right-20"
+            className="absolute w-64 top-14 right-20"
             initial="initial"
             transition={{
               duration: 0.4,
