@@ -11,7 +11,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <link rel="icon" href="/athena.jpg" />
+        <link rel="icon" href="/athena.png" />
       </Head>
       <FormProvider {...form}>
         <Nav />
