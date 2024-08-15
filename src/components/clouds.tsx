@@ -9,6 +9,8 @@ import {
 } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Cover from "./cover";
+import RatingBar from "./ratingBar";
 
 export type CloudProps = {
   text?: string;
@@ -24,6 +26,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
       await cycle.start("hide");
       setTimes(times + 1);
     }
+    console.log(times);
   };
 
   useEffect(() => {
@@ -47,7 +50,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             className="absolute w-48 top-60 left-20"
             initial="initial"
             transition={{
-              duration: 0.4,
+              duration: 0.2,
               ease: "backInOut",
               delay: 0,
             }}
@@ -75,7 +78,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             className="absolute w-56 top-48 right-80"
             initial="initial"
             transition={{
-              duration: 0.4,
+              duration: 0.2,
               ease: "backInOut",
               delay: 0.6,
             }}
@@ -101,7 +104,8 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             className="absolute w-64 top-14 right-20"
             initial="initial"
             transition={{
-              duration: 0.4,
+              duration: 0.2,
+              // duration: 0.4,
               ease: "backInOut",
               delay: 1.2,
             }}
@@ -123,7 +127,19 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             <CloudPic show={times > 2} text={bookRec?.title} />
           </motion.div>
         </AnimatePresence>
+        {times === 4 && (
+          <div className="absolute  right-10 top-20">
+            <Cover
+              title={bookRec?.title}
+              author={bookRec?.author}
+              genre={bookRec?.genre}
+              rating={bookRec?.rating}
+            />
+            {/* <RatingBar rating={bookRec?.rating} /> */}
+          </div>
+        )}
       </div>
+
       <div className="flex gap-3"></div>
     </>
   );

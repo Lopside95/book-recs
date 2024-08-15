@@ -11,6 +11,7 @@ import React, { SetStateAction, useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { register } from "module";
 import RatingBar from "@/components/ratingBar";
+import Cover from "@/components/cover";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -67,7 +68,8 @@ const FullRandom = () => {
         {times > 2 && <div>{bookRec?.author}</div>}
         {times > 1 && <div className="">{bookRec?.genre}</div>}
 
-        <RatingBar rating={bookRec?.rating} />
+        {/* <RatingBar rating={bookRec?.rating} /> */}
+
         <Button onClick={handleClick}>find a book</Button>
       </div>
     </div>
