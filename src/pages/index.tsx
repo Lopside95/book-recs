@@ -33,7 +33,7 @@ const FullRandom = () => {
   const form = useForm<Book>({
     resolver: zodResolver(booksSchema),
   });
-  const [times, setTimes] = useState<number>(6);
+  const [times, setTimes] = useState<number>(5);
 
   const { data: book, refetch } = trpc.getRandom.useQuery(undefined, {
     enabled: false,
@@ -61,17 +61,14 @@ const FullRandom = () => {
   }, []);
 
   return (
-    <div className="flex justify-center pt-20 gap-4 items-center">
+    <div className="flex flex-col relative justify-center pt-20 gap-4 items-center">
       <Clouds setTimes={setTimes} times={times} bookRec={bookRec} />
-      <div className="">
-        {times > 3 && <div>{bookRec?.title}</div>}
-        {times > 2 && <div>{bookRec?.author}</div>}
-        {times > 1 && <div className="">{bookRec?.genre}</div>}
-
-        {/* <RatingBar rating={bookRec?.rating} /> */}
-
-        <Button onClick={handleClick}>find a book</Button>
-      </div>
+      {times >= 4 && (
+        <Button className="absolute bottom-14" onClick={handleClick}>
+          find a book
+        </Button>
+      )}
+      <div className=""></div>
     </div>
   );
 };

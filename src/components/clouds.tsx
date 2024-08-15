@@ -37,11 +37,11 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
     <>
       <div className="relative w-[850px] self-center border-4 h-[600px]">
         <Image
+          alt=""
+          className="w-40 absolute bottom-2 left-2"
+          height={200}
           src="/thinking.png"
           width={200}
-          height={200}
-          className="w-40 absolute bottom-2 left-2"
-          alt=""
         />
 
         <AnimatePresence>
@@ -50,7 +50,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             className="absolute w-48 top-60 left-20"
             initial="initial"
             transition={{
-              duration: 0.2,
+              duration: 0.1,
               ease: "backInOut",
               delay: 0,
             }}
@@ -69,7 +69,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               },
             }}
           >
-            <CloudPic text={bookRec?.genre} show={times > 0} />
+            <CloudPic show={times > 0} text={bookRec?.genre} />
             {/* <p className="absolute top-96 left-48">{bookRec?.genre}</p> */}
           </motion.div>
 
@@ -78,7 +78,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             className="absolute w-56 top-48 right-80"
             initial="initial"
             transition={{
-              duration: 0.2,
+              duration: 0.1,
               ease: "backInOut",
               delay: 0.6,
             }}
@@ -104,7 +104,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             className="absolute w-64 top-14 right-20"
             initial="initial"
             transition={{
-              duration: 0.2,
+              duration: 0.1,
               // duration: 0.4,
               ease: "backInOut",
               delay: 1.2,
@@ -128,11 +128,11 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
           </motion.div>
         </AnimatePresence>
         {times === 4 && (
-          <div className="absolute  right-10 top-20">
+          <div className="absolute right-10 top-20">
             <Cover
-              title={bookRec?.title}
               author={bookRec?.author}
               genre={bookRec?.genre}
+              title={bookRec?.title}
               rating={bookRec?.rating}
             />
             {/* <RatingBar rating={bookRec?.rating} /> */}

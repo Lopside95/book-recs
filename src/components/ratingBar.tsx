@@ -49,20 +49,16 @@ const RatingBar = ({ rating }: BarProps) => {
             duration: 0.7,
           },
         }}
-        // exit={{
-        //   scaleY: 0,
-        //   transformOrigin: "top",
-        //   transition: {
-        //     duration: 0,
-        //   },
-        // }}
-        // transition={{
-        //   duration: 0.7,
-        //   delay: 0.4,
-        // }}
-        className="h-20 w-6 bg-black"
+        className="h-32 w-10 bg-black relative flex justify-center "
       >
-        <p className="text-white text-xl">{rating}</p>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.7 }}
+          className="text-white text-2xl pt-5 ease-in delay-1000"
+        >
+          {rating}
+        </motion.p>
       </motion.div>
     </AnimatePresence>
   );
