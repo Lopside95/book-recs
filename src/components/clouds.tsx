@@ -1,16 +1,10 @@
 "use client";
 
-import { Book, CloudInfo } from "@/types/books";
-import {
-  AnimatePresence,
-  motion,
-  useAnimationControls,
-  useScroll,
-} from "framer-motion";
+import { CloudInfo } from "@/types/books";
+import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Cover from "./cover";
-import RatingBar from "./ratingBar";
 
 export type CloudProps = {
   text?: string;
@@ -35,7 +29,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
 
   return (
     <>
-      <div className="relative w-[850px] self-center border-4 h-[600px]">
+      <div className="relative w-[850px] self-center h-[600px]">
         <Image
           alt=""
           className="w-40 absolute bottom-2 left-2"
@@ -132,8 +126,8 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             <Cover
               author={bookRec?.author}
               genre={bookRec?.genre}
-              title={bookRec?.title}
               rating={bookRec?.rating}
+              title={bookRec?.title}
             />
             {/* <RatingBar rating={bookRec?.rating} /> */}
           </div>

@@ -23,7 +23,7 @@ const MyApp: AppType = ({ Component, pageProps }) => {
         <link rel="icon" href="/athena.png" />
       </Head>
       <FormProvider {...form}>
-        <Nav />
+        {/* <Nav /> */}
         <main className={inter.className}>
           <Component {...pageProps} />
         </main>
