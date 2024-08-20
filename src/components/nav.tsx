@@ -6,13 +6,7 @@ const Nav = () => {
 
   return (
     <div className="flex z-50 w-full items-center justify-center gap-4 sticky top-0 mb-10 ">
-      {/* <Button onClick={() => router.push("/")}>Main</Button>
-      <Button onClick={() => router.push("/menu")}>Menu</Button> */}
       <Button onClick={() => router.push("/")}>Main</Button>
-      {/* <Button onClick={() => router.push("/createBook")}>Create</Button> */}
-      {/* <Button onClick={() => router.push("/find")}>Find</Button>
-      <Button onClick={() => router.push("/author")}>Author</Button>
-      <Button onClick={() => router.push("/byAuthor")}>By author</Button> */}
     </div>
   );
 };

@@ -15,7 +15,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
   const cycle = useAnimationControls();
 
   const handleCycle = async () => {
-    if (times !== undefined && times < 4) {
+    if (times !== undefined && times < 3) {
       await cycle.start("show");
       await cycle.start("hide");
       setTimes(times + 1);
@@ -44,7 +44,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             className="absolute w-48 top-60 left-20"
             initial="initial"
             transition={{
-              duration: 0.1,
+              duration: 0.2,
               ease: "backInOut",
               delay: 0,
             }}
@@ -63,7 +63,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               },
             }}
           >
-            <CloudPic show={times > 0} text={bookRec?.genre} />
+            <CloudPic show={times >= 0} text={bookRec?.genre} />
             {/* <p className="absolute top-96 left-48">{bookRec?.genre}</p> */}
           </motion.div>
 
@@ -72,7 +72,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             className="absolute w-56 top-48 right-80"
             initial="initial"
             transition={{
-              duration: 0.1,
+              duration: 0.2,
               ease: "backInOut",
               delay: 0.6,
             }}
@@ -91,14 +91,14 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               },
             }}
           >
-            <CloudPic show={times > 1} text={bookRec?.author} />
+            <CloudPic show={times >= 1} text={bookRec?.author} />
           </motion.div>
           <motion.div
             animate={cycle}
             className="absolute w-64 top-14 right-20"
             initial="initial"
             transition={{
-              duration: 0.1,
+              duration: 0.2,
               // duration: 0.4,
               ease: "backInOut",
               delay: 1.2,
@@ -118,10 +118,10 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               },
             }}
           >
-            <CloudPic show={times > 2} text={bookRec?.title} />
+            <CloudPic show={times >= 2} text={bookRec?.title} />
           </motion.div>
         </AnimatePresence>
-        {times === 4 && (
+        {times === 3 && (
           <div className="absolute right-10 top-20">
             <Cover
               author={bookRec?.author}

@@ -38,9 +38,9 @@ const FullRandom = () => {
   return (
     <div className="flex flex-col relative justify-center pt-20 gap-4 items-center">
       <Clouds bookRec={bookRec} setTimes={setTimes} times={times} />
-      {times >= 4 && (
+      {times >= 3 && (
         <Button
-          className="absolute bottom-14"
+          className="absolute bottom-14 "
           onClick={handleClick}
           variant="outline"
         >
