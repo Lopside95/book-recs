@@ -7,6 +7,7 @@ const Nav = () => {
   return (
     <div className="flex z-50 w-full items-center justify-center gap-4 sticky top-0 mb-10 ">
       <Button onClick={() => router.push("/")}>Main</Button>
+      <Button onClick={() => router.push("/createBook")}>Create Book</Button>
     </div>
   );
 };
