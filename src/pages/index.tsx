@@ -13,9 +13,10 @@ export type TextProps = {
 const FullRandom = () => {
   const [times, setTimes] = useState<number>(5);
 
-  const { data: book, refetch } = trpc.getRandom.useQuery(undefined, {
-    enabled: false,
-  });
+  const { data: book, refetch } = trpc.getRandom.useQuery();
+  // const { data: book, refetch } = trpc.getRandom.useQuery(undefined, {
+  //   enabled: false,
+  // });
 
   const [bookRec, setBookRec] = useState<Book>();
 
