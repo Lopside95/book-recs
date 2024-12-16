@@ -28,20 +28,22 @@ export const appRouter = createRouter({
     return theBook;
   }),
   getRandom: publicProcedure.query(async () => {
-    const allBooks = await prisma.book.findMany({
-      include: {
-        author: true,
-        genre: true,
-      },
-    });
+    try {
+      const allBooks = await prisma.book.findMany({
+        include: {
+          author: true,
+          genre: true,
+        },
+      });
 
-    // const roof = allBooks.length
+      const randomNum = Math.floor(Math.random() * allBooks.length);
 
-    const randomNum = Math.floor(Math.random() * allBooks.length);
+      const randomBook = allBooks[randomNum];
 
-    const randomBook = allBooks[randomNum];
-
-    return randomBook;
+      return randomBook;
+    } catch (error) {
+      console.error(error);
+    }
   }),
   createBook: publicProcedure
     .input(createBookSchema)
