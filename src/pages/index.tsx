@@ -14,9 +14,6 @@ const FullRandom = () => {
   const [times, setTimes] = useState<number>(5);
 
   const { data: book, refetch } = trpc.getRandom.useQuery();
-  // const { data: book, refetch } = trpc.getRandom.useQuery(undefined, {
-  //   enabled: false,
-  // });
 
   const [bookRec, setBookRec] = useState<Book>();
 
@@ -29,11 +26,16 @@ const FullRandom = () => {
       title: book?.title,
       rating: book?.rating,
     });
-    console.log("book", book);
   };
 
   useEffect(() => {
     refetch();
+    setBookRec({
+      author: book?.author.name,
+      genre: book?.genre.name,
+      title: book?.title,
+      rating: book?.rating,
+    });
   }, []);
 
   return (
