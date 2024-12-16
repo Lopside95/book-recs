@@ -1,8 +1,9 @@
-import Clouds from "@/components/clouds";
+import Clouds, { CloudPic } from "@/components/clouds";
 import { trpc } from "@/utils/trpc";
 import { Book } from "@/types/books";
 import { Button } from "@/components/ui/button";
 import React, { useEffect, useState } from "react";
+import { Loader2 } from "lucide-react";
 
 export type TextProps = {
   name: string;
@@ -13,12 +14,10 @@ export type TextProps = {
 const FullRandom = () => {
   const [times, setTimes] = useState<number>(5);
 
-  const { data: book, refetch } = trpc.getRandom.useQuery();
-  // const { data: book, refetch } = trpc.getRandom.useQuery(undefined, {
-  //   enabled: false,
-  // });
+  const { data: book, refetch, isLoading } = trpc.getRandom.useQuery();
 
   const [bookRec, setBookRec] = useState<Book>();
+  const [pageLoading, setPageLoading] = useState<boolean>(true);
 
   const handleClick = async () => {
     setTimes(0);
@@ -38,8 +37,27 @@ const FullRandom = () => {
       genre: book?.genre.name,
       title: book?.title,
       rating: book?.rating,
+
+      // author: "Daniel Keyes",
+      // genre: "Sicence Fiction",
+      // title: "Flowers for Algernon",
+      // rating: 9,
     });
   }, []);
+
+  useEffect(() => {
+    if (book) {
+      setPageLoading(false);
+    }
+  }, [book]);
+
+  if (pageLoading) {
+    return (
+      <div className="self-center mt-80 justify-self-center">
+        <CloudPic show={true} text="Loading" />
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col relative justify-center pt-20 gap-4 items-center">
@@ -53,7 +71,6 @@ const FullRandom = () => {
           What to read?
         </Button>
       )}
-      <div className=""></div>
     </div>
   );
 };

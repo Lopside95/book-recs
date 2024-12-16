@@ -20,7 +20,6 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
       await cycle.start("hide");
       setTimes(times + 1);
     }
-    console.log(times);
   };
 
   useEffect(() => {
@@ -63,7 +62,10 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               },
             }}
           >
-            <CloudPic show={times >= 0} text={bookRec?.genre} />
+            <CloudPic
+              show={times >= 0}
+              text={bookRec?.genre ? bookRec.genre : "Page"}
+            />
             {/* <p className="absolute top-96 left-48">{bookRec?.genre}</p> */}
           </motion.div>
 
@@ -91,7 +93,10 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               },
             }}
           >
-            <CloudPic show={times >= 1} text={bookRec?.author} />
+            <CloudPic
+              show={times >= 1}
+              text={bookRec?.author ? bookRec.author : "Is"}
+            />
           </motion.div>
           <motion.div
             animate={cycle}
@@ -118,7 +123,10 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               },
             }}
           >
-            <CloudPic show={times >= 2} text={bookRec?.title} />
+            <CloudPic
+              show={times >= 2}
+              text={bookRec?.title ? bookRec.title : "Loading"}
+            />
           </motion.div>
         </AnimatePresence>
         {times === 3 && (
