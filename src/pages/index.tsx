@@ -29,11 +29,16 @@ const FullRandom = () => {
       title: book?.title,
       rating: book?.rating,
     });
-    console.log("book", book);
   };
 
   useEffect(() => {
     refetch();
+    setBookRec({
+      author: book?.author.name,
+      genre: book?.genre.name,
+      title: book?.title,
+      rating: book?.rating,
+    });
   }, []);
 
   return (
