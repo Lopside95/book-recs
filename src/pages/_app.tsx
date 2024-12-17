@@ -20,11 +20,10 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   return (
     <>
       <Head>
-        <link rel="icon" href="/athena.png" />
+        <link href="/athena.png" rel="icon" />
       </Head>
       <FormProvider {...form}>
-        {/* <Nav /> */}
-        <main className={inter.className}>
+        <main className={`${inter.className}  `}>
           <Component {...pageProps} />
         </main>
       </FormProvider>

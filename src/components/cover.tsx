@@ -5,12 +5,12 @@ import { motion, useAnimationControls } from "framer-motion";
 
 const Cover = ({ title, author, genre, rating }: Book) => {
   return (
-    <div className="w-[35rem]  items-center justify-evenly flex gap-14 h-[300px]">
-      <div className="flex flex-col gap-5">
+    <div className="lg:w-[35rem] items-center justify-evenly flex lg:gap-14 lg:h-[300px]">
+      <div className="flex flex-col gap-2 lg:gap-5">
         <motion.h1
           animate={{ opacity: 1, x: 0 }}
           initial={{ opacity: 0, x: -40 }}
-          style={{ fontStyle: "italic" }}
+          // style={{ fontStyle: "italic" }}
           transition={{ duration: 0.9 }}
         >
           {title}

@@ -28,10 +28,10 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
 
   return (
     <>
-      <div className="relative w-[850px] self-center h-[600px]">
+      <div className="lg:relative w-full flex flex-col-reverse bg-red-400 lg:w-[850px] self-center h-full lg:h-[600px]">
         <Image
           alt=""
-          className="w-40 absolute bottom-2 left-2"
+          className="w-40 pl-5 lg:absolute bottom-2 left-2   "
           height={200}
           src="/thinking.png"
           width={200}
@@ -40,7 +40,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
         <AnimatePresence>
           <motion.div
             animate={cycle}
-            className="absolute w-48 top-60 left-20"
+            className="lg:absolute ml-5 w-40 lg:w-48 top-56 lg:top-60 left-20"
             initial="initial"
             transition={{
               duration: 0.2,
@@ -71,7 +71,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
 
           <motion.div
             animate={cycle}
-            className="absolute w-56 top-48 right-80"
+            className="lg:absolute w-52 lg:w-56 ml-14 lg:top-48 right-80"
             initial="initial"
             transition={{
               duration: 0.2,
@@ -100,7 +100,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
           </motion.div>
           <motion.div
             animate={cycle}
-            className="absolute w-64 top-14 right-20"
+            className="lg:absolute w-52 lg:w-64 ml-32 top-14 right-20"
             initial="initial"
             transition={{
               duration: 0.2,
@@ -130,7 +130,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
           </motion.div>
         </AnimatePresence>
         {times === 3 && (
-          <div className="absolute right-10 top-20">
+          <div className="absolute left-6 lg:right-10 top-16 lg:top-20">
             <Cover
               author={bookRec?.author}
               genre={bookRec?.genre}
