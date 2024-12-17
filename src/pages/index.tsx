@@ -53,14 +53,14 @@ const FullRandom = () => {
 
   if (pageLoading) {
     return (
-      <div className="self-center mt-80 justify-self-center">
-        <CloudPic show={true} text="Loading" />
+      <div className="self-center w-32 mt-40 justify-self-center">
+        <CloudPic show={true} text="Loading..." />
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col relative mt-40 justify-center lg:pt-20 gap-4 h-full items-center">
+    <div className="flex flex-col relative mt-20 justify-center lg:pt-20 gap-4 h-full items-center">
       <Clouds bookRec={bookRec} setTimes={setTimes} times={times} />
       {times >= 3 && (
         <Button
