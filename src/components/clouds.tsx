@@ -28,7 +28,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
 
   return (
     <>
-      <div className="lg:relative w-full flex flex-col-reverse bg-red-400 lg:w-[850px] self-center h-full lg:h-[600px]">
+      <div className="lg:relative w-full flex flex-col-reverse  lg:w-[850px] self-center h-full lg:h-[600px]">
         <Image
           alt=""
           className="w-40 pl-5 lg:absolute bottom-2 left-2   "
