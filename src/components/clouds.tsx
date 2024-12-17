@@ -62,10 +62,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               },
             }}
           >
-            <CloudPic
-              show={times >= 0}
-              text={bookRec?.genre ? bookRec.genre : "Page"}
-            />
+            <CloudPic show={times >= 0} text={bookRec?.genre} />
             {/* <p className="absolute top-96 left-48">{bookRec?.genre}</p> */}
           </motion.div>
 

@@ -37,11 +37,6 @@ const FullRandom = () => {
       genre: book?.genre.name,
       title: book?.title,
       rating: book?.rating,
-
-      // author: "Daniel Keyes",
-      // genre: "Sicence Fiction",
-      // title: "Flowers for Algernon",
-      // rating: 9,
     });
   }, []);
 
@@ -51,7 +46,7 @@ const FullRandom = () => {
     }
   }, [book]);
 
-  if (pageLoading) {
+  if (isLoading || pageLoading) {
     return (
       <div className="self-center w-32 mt-40 justify-self-center">
         <CloudPic show={true} text="Loading..." />
@@ -68,7 +63,7 @@ const FullRandom = () => {
           onClick={handleClick}
           variant="outline"
         >
-          What should I read next?
+          {!isLoading ? "What should I read next?" : <Loader2 />}
         </Button>
       )}
     </div>
