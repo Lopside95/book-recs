@@ -36,7 +36,6 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
           src="/thinking.png"
           width={200}
         />
-
         <AnimatePresence>
           <motion.div
             animate={cycle}
@@ -63,9 +62,7 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
             }}
           >
             <CloudPic show={times >= 0} text={bookRec?.genre} />
-            {/* <p className="absolute top-96 left-48">{bookRec?.genre}</p> */}
           </motion.div>
-
           <motion.div
             animate={cycle}
             className="lg:absolute w-52 lg:w-56 ml-14 lg:top-48 right-80"
@@ -134,7 +131,6 @@ const Clouds = ({ times, setTimes, bookRec }: CloudInfo) => {
               rating={bookRec?.rating}
               title={bookRec?.title}
             />
-            {/* <RatingBar rating={bookRec?.rating} /> */}
           </div>
         )}
       </div>
