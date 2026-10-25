@@ -1,13 +1,55 @@
 # Book Recommendations 📚
+### If you’re looking for your next read, this app can give you recommendations from a few of my favourite books.
 
-## Very much a WIP 🛠️
 
-### The plan 💡 ->
+TypeScript | React | Next.js | TailwindCSS
+<p>
+<img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg"
+      width="40px"
+      height="40px"
+    />
+      &nbsp;
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+      width="40px"
+      height="40px"
+    /> 
+      &nbsp;
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg"
+      width="40px"
+      height="40px"
+    />
+      &nbsp;
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg"
+      width="40px"
+      height="40px"
+    />
+</p>
 
-#### feat-1: Search for books/authors/genres/ratings on the database
+MongoDB | tRPC | Prisma ORM
+<p>
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
+      width="40px"
+      height="40px"
+    />
+      &nbsp;
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/trpc/trpc-original.svg"
+      width="40px"
+      height="40px"
+    />
+      &nbsp;
+    <img
+      src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg"
+      width="40px"
+      height="40px"
+    />
+</p>
 
-#### feat-2: Get a random recommendation
+#### https://booksfromjames.vercel.app
 
-#### feat-3: Get a recommendation based off author/genre/rating (or all 3)
 
-#### feat-3: Allow users to add books to the db, add more categories and info - possibly adding some auth/moderation requirements
