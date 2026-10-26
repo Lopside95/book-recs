@@ -42,7 +42,12 @@ export const appRouter = createRouter({
 
       return randomBook;
     } catch (error) {
-      console.error(error);
+      console.error("getRandom failed:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: error instanceof Error ? error.message : "getRandom failed",
+        cause: error,
+      });
     }
   }),
   createBook: publicProcedure
